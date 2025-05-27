@@ -1,0 +1,24 @@
+name: clamav
+
+include:
+  - ../testserver/docker-compose.yml
+
+services:
+  clamav:
+    build:
+      context: "containers/clamav"
+
+#   clamav.idmefv2:
+#     build:
+#       context: "containers/clamav-idmefv2"
+#     ports:
+#       - 5678:5678/tcp
+#     volumes:
+#       - type: "volume"
+#         source: "wazuh_logs"
+#         target: "/var/ossec/logs"
+#       - type: "bind"
+#         source: "${IDMEFV2_CONNECTORS_GIT}"
+#         target: "/idmefv2-connectors"
+# #    entrypoint: "/entrypoint-debug.sh"
+#     entrypoint: "/entrypoint.sh"
