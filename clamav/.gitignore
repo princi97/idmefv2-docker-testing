@@ -1,1 +1,2 @@
 *.log
+containers/clamav/files/metadata.json.tar.gz
