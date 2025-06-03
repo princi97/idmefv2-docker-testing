@@ -7,18 +7,25 @@ services:
   clamav:
     build:
       context: "containers/clamav"
+    volumes:
+      - type: "volume"
+        source: "clamav_tmp"
+        target: "/var/tmp/clamav"
 
-#   clamav.idmefv2:
-#     build:
-#       context: "containers/clamav-idmefv2"
-#     ports:
-#       - 5678:5678/tcp
-#     volumes:
-#       - type: "volume"
-#         source: "wazuh_logs"
-#         target: "/var/ossec/logs"
-#       - type: "bind"
-#         source: "${IDMEFV2_CONNECTORS_GIT}"
-#         target: "/idmefv2-connectors"
-# #    entrypoint: "/entrypoint-debug.sh"
-#     entrypoint: "/entrypoint.sh"
+  clamav.idmefv2:
+    build:
+      context: "containers/clamav-idmefv2"
+    ports:
+      - 5678:5678/tcp
+    volumes:
+      - type: "volume"
+        source: "clamav_tmp"
+        target: "/var/tmp/clamav"
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+#    entrypoint: "/entrypoint-debug.sh"
+    entrypoint: "/entrypoint.sh"
+
+volumes:
+  clamav_tmp:

@@ -11,6 +11,6 @@ VOLUME /var/www/glpi/files
 
 # Replace base image entry point
 COPY --chmod=0755 ./files/startup-noacl.sh /opt
-
 CMD /opt/startup-noacl.sh
+
 WORKDIR /var/www/glpi
