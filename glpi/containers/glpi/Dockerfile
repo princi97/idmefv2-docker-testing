@@ -1,4 +1,4 @@
-ARG BASE_IMAGE
+ARG BASE_IMAGE=ghcr.io/glpi-project/glpi:10.0-nightly
 
 FROM ${BASE_IMAGE}
 

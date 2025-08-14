@@ -1,7 +1,7 @@
 name: glpi-addon
 
-#include:
-#  - ../glpi/docker-compose.yml
+include:
+  - ../glpi/docker-compose.yml
 
 services:
   addon:
