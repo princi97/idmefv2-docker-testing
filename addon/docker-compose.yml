@@ -1,13 +1,15 @@
 name: glpi-addon
 
-include:
-  - ../glpi/docker-compose.yml
+#include:
+#  - ../glpi/docker-compose.yml
 
 services:
   addon:
     container_name: "addon"
     build:
       context: "containers/addon"
+    ports:
+      - 5000:5000
     volumes:
       - type: "bind"
         source: "${IDMEFV2_GLPI_ADDON_GIT}"
