@@ -8,6 +8,8 @@ services:
     container_name: "addon"
     build:
       context: "containers/addon"
+      args:
+        - GLPI_ADDON_CONFIG_FILE
     ports:
       - 5000:5000
     volumes:
