@@ -1,6 +1,6 @@
 services:
   glpi:
-    image: "glpi/glpi:latest"
+    image: "${GLPI_DOCKER_IMAGE:-glpi/glpi:latest}"
     restart: "unless-stopped"
     volumes:
       - "./storage/glpi:/var/glpi:rw"
