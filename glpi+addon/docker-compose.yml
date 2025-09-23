@@ -8,12 +8,16 @@ services:
     container_name: "addon"
     build:
       context: "containers/addon"
-      args:
-        - GLPI_ADDON_CONFIG_FILE
     ports:
       - 5000:5000
     volumes:
       - type: "bind"
         source: "${IDMEFV2_GLPI_ADDON_GIT}"
         target: "/idmefv2-glpi-addon"
+      - type: "bind"
+        source: "./storage/addon/etc"
+        target: "/etc/glpi-addon"
     command: /entrypoint.sh
+    depends_on:
+      glpi:
+        condition: service_started

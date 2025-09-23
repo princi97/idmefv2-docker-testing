@@ -6,4 +6,4 @@ set -e
 cd /idmefv2-glpi-addon
 pip install --break-system-packages .
 
-python3 -m idmefv2.addon.glpi -c /etc/glpi-addon.conf
+python3 -m idmefv2.addon.glpi -c /etc/glpi-addon/glpi-addon.conf
