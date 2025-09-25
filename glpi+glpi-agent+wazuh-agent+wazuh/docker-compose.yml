@@ -1,0 +1,16 @@
+name: glpiwazuh
+
+include:
+  - ../glpi/docker-compose.yml
+  - ${WAZUH_DOCKER:?FOO}
+  - ../wazuh-agent/docker-compose.yml
+
+services:
+  glpi-agent1:
+    extends:
+      file: ../glpi-agent/docker-compose.yml
+      service: glpi-agent
+    volumes:
+      - type: "bind"
+        source: "./storage/glpi-agent/etc/glpi-agent"
+        target: "/etc/glpi-agent"
