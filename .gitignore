@@ -1,4 +1,4 @@
 .env
 .vscode/
-suricata/containers/suricata/files/my-suricata-idmefv2.conf
 clamav/containers/clamav-idmefv2/files/my-clamav-idmefv2.conf
+suricata+connector/containers/suricata-idmefv2/files/my-suricata-idmefv2.conf

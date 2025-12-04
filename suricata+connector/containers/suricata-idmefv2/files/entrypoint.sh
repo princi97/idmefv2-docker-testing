@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/sh
 
 set -e
 
@@ -6,4 +6,4 @@ set -e
 cd /idmefv2-connectors
 pip install --break-system-packages --force-reinstall .
 
-python3 -m idmefv2.connectors.clamav -c /etc/clamav-idmefv2.conf
+python3 -m idmefv2.connectors.suricata -c /etc/suricata-idmefv2.conf

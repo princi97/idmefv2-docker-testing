@@ -1,0 +1,34 @@
+name: suricata
+
+include:
+  - ../testserver/docker-compose.yml
+
+services:
+  suricata:
+    container_name: "suricata"
+    build:
+      context: "containers/suricata"
+    volumes:
+      - type: "volume"
+        source: "suricata_log"
+        target: "/var/log/suricata/"
+    network_mode: "host"
+    command: /entrypoint.sh -i ${INTERFACE}
+
+  suricata.idmefv2:
+    build:
+      context: "containers/suricata-idmefv2"
+      args:
+        - CONNECTOR_CONFIG_FILE
+    volumes:
+      - type: "volume"
+        source: "suricata_log"
+        target: "/var/log/suricata/"
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+    network_mode: "host"
+    command: /entrypoint.sh
+
+volumes:
+  suricata_log:
