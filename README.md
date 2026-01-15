@@ -15,7 +15,7 @@ Current application list:
 
 | application        | description           | includes other application? |
 | ------------- |-------------| -----|
-| [clamav+connector](./clamav+connector) | ClamAV antivirus + IDMEFv2 connector  | testserver  |
+| [clamav+connector](./clamav+connector) | [ClamAV] antivirus + IDMEFv2 connector  | testserver  |
 | [glpi](./glpi) | [GLPI] asset management |   |
 | [glpi+addon](./glpi+addon) | IDMEFv2 add-on for message enrichment  | glpi  |
 | [suricata+connector](./suricata+connector) | [Suricata] NIDS + IDMEFv2 connector | testserver  |
@@ -24,6 +24,7 @@ Current application list:
 | [wazuh+wazuh-agent+connector](./wazuh+wazuh-agent+connector) | [Wazuh] NIDS + IDMEFv2 connector | wazuh, wazuh-agent, testserver  |
 | [zoneminder+connector](./zoneminder+connector) | [Zoneminder]  + IDMEFv2 connector | testserver  |
 
+[ClamAV]: https://www.clamav.net/
 [GLPI]: https://github.com/glpi-project
 [Suricata]: https://suricata.io/
 [Wazuh]: https://wazuh.com/
