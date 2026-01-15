@@ -1,6 +1,0 @@
-services:
-  glpi-agent:
-    build:
-      context: "containers/glpi-agent"
-      args:
-        - GLPI_AGENT_INSTALLER_URL=https://github.com/glpi-project/glpi-agent/releases/download/1.15/glpi-agent-1.15-linux-installer.pl
