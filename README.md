@@ -13,11 +13,20 @@ Applications are modularized and use extensively the [**include**](https://docs.
 
 Current application list:
 
-| application        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| <./glpi>      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| application        | description           | includes other application? |
+| ------------- |-------------| -----|
+| [clamav+connector](./clamav+connector) | ClamAV antivirus + IDMEFv2 connector  | testserver  |
+| [glpi](./glpi) | [GLPI] asset management |   |
+| [glpi+addon](./glpi+addon) | IDMEFv2 add-on for message enrichment  | glpi  |
+| [suricata+connector](./suricata+connector) | Suricata NIDS + IDMEFv2 connector | testserver  |
+| [testserver](./testserver) | a simple HTTP server to validate IDMEFv2 messages  |   |
+| [wazuh-agent](./wazuh-agent) | [Wazuh] HIDS agent  |   |
+| [wazuh+wazuh-agent+connector](./wazuh+wazuh-agent+connector) | [Wazuh] NIDS + IDMEFv2 connector | wazuh, wazuh-agent, testserver  |
+| [zoneminder+connector](./zoneminder+connector) | [Zoneminder]  + IDMEFv2 connector | testserver  |
+
+[GLPI]: https://github.com/glpi-project
+[Wazuh]: https://wazuh.com/
+[Zoneminder]: https://zoneminder.com/
 
 ## Prerequisites
 
