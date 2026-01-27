@@ -1,6 +1,6 @@
 # IDMEFv2 docker testing
 
-This repository provides a set of `docker-compose` used for testing the components developed within the [IDMEFv2](https://github.com/IDMEFv2) organization. These components include:
+This repository provides a set of `docker-compose` applications used for testing the components developed within the [IDMEFv2](https://github.com/IDMEFv2) organization. These components include:
 
 - IDMEFv2 connectors for open-source cybersecurity probes and managers, source codes located in https://github.com/IDMEFv2/idmefv2-connectors
 - [GLPI](https://github.com/glpi-project/glpi) add-on for IDMEFv2 message enrichment, source code located in https://github.com/IDMEFv2/idmefv2-glpi-addon
@@ -32,7 +32,27 @@ Current application list:
 
 ## Prerequisites
 
+An obvious prerequisite is to have `docker` installed on the host running the application. Refer to the docker documentation appropriate to the testing platform.
 
+Some prerequisites are application specific and are documented in each application README.
+
+## Environment variables
+
+Applications can be configured using `.env` environment variables file or using a `compose.override.yaml` as documented in https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/.
+
+Each application documents its required and optional environment variables. A `.sample.env` is provided in each application directory and can be used as a template to define your own `.env`.
+
+## Volumes
+
+As applications are dedicated to code testing, each application mounts the code to be tested inside a docker `bind` volume, the source directory being defined in an enviroment variable.
+
+Each application may use additional volumes and documents the volumes it uses.
+
+## Running the application
+
+Running an application is merely using a `docker compose up` command to build the containers and start them.
+
+Once an application is up, it can expose web UI, REST API server... which are documented inside each application README.
 
 ## Contributions
 
