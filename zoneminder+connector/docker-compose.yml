@@ -28,7 +28,11 @@ services:
     command: --disable-log-bin
     volumes:
        - "./storage/mysql:/var/lib/mysql"
-    env_file: .env
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: ${ZM_DB_NAME}
+      MYSQL_USER: ${ZM_DB_USER}
+      MYSQL_PASSWORD: ${ZM_DB_PASS}
     expose:
       - "3306"
 
