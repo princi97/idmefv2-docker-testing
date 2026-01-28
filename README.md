@@ -44,7 +44,7 @@ Each application documents its required and optional environment variables. A `.
 
 ## Volumes
 
-As applications are dedicated to code testing, each application mounts the code to be tested inside a docker `bind` volume, the source directory being defined in an enviroment variable.
+As applications are dedicated to code testing, each application mounts the code to be tested inside a docker `bind` volume, the source directory being defined in an environment variable.
 
 Each application may use additional volumes and documents the volumes it uses.
 
