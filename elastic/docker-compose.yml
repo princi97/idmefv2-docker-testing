@@ -238,6 +238,10 @@ services:
         source: nginxlogs
         target: /logs/nginx
         read_only: true
+      - type: volume
+        source: sshdlogs
+        target: /logs/sshd
+        read_only: true
   nginx:
     container_name: "nginx"
     image: nginx
@@ -251,6 +255,15 @@ services:
       - type: "volume"
         source: nginxlogs
         target: "/logs/nginx"
+  sshd:
+    build:
+       context: ./containers/sshd
+    ports:
+      - 2222:22
+    volumes:
+      - type: "volume"
+        source: sshdlogs
+        target: "/var/log"
 
 volumes:
   certs:
@@ -264,4 +277,6 @@ volumes:
   kibanadata:
     driver: local
   nginxlogs:
+    driver: local
+  sshdlogs:
     driver: local
