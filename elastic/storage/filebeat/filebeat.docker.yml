@@ -1,0 +1,24 @@
+
+filebeat.modules:
+  - module: nginx
+    access:
+      enabled: true
+      var.paths: ["/logs/nginx/access.log*"]
+    error:
+      enabled: true
+      var.paths: ["/logs/nginx/error.log*"]
+
+# test with:
+# curl -u elastic:safe4soc --cacert config/certs/ca/ca.crt http://es01:9200
+output.elasticsearch:
+  hosts:
+    - "https://es01:9200"
+  username: elastic
+  password: safe4soc
+  ssl:
+    certificate_authorities: /usr/share/filebeat/config/certs/ca/ca.crt
+
+setup.kibana:
+  host: "kibana:5601"
+  username: elastic
+  password: safe4soc
