@@ -1,3 +1,4 @@
+setup.dashboards.enabled: true
 
 filebeat.modules:
   - module: system
