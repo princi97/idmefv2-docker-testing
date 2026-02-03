@@ -1,0 +1,11 @@
+groups:
+  - name: example_alerts
+    rules:
+      - alert: TargetDown
+        expr: up{job="monitored-target"} == 0
+        for: 5s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Monitored target is down"
+          description: "The monitored target instance is not reachable."
