@@ -1,0 +1,49 @@
+name: prometheus
+
+services:
+  prometheus:
+    container_name: "prometheus"
+    build:
+      context: "containers/prometheus"
+    ports:
+      - "9592:9090"
+    volumes:
+      - type: "bind"
+        source: "./containers/prometheus/files/prometheus.yml"
+        target: "/etc/prometheus/prometheus.yml"
+      - type: "bind"
+        source: "./containers/prometheus/files/alert.rules.yml"
+        target: "/etc/prometheus/alert.rules.yml"
+    networks:
+      - connector_net
+
+  prometheus.idmefv2:
+    build:
+      context: "containers/prometheus-idmefv2"
+      args:
+        - CONNECTOR_CONFIG_FILE
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+    networks:
+      - connector_net
+    command: /entrypoint.sh
+
+  testserver.idmefv2:
+    extends:
+      file: ../testserver/docker-compose.yml
+      service: testserver.idmefv2
+    networks:
+      - connector_net
+
+  monitored-target:
+    image: busybox
+    container_name: monitored-target
+    command: sh -c "echo 'Starting dummy server' && httpd -f -p 8080"
+    networks:
+      - connector_net
+
+networks:
+  connector_net:
+    driver: bridge
