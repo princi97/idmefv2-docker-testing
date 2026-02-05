@@ -18,6 +18,8 @@ Current application list:
 | [clamav+connector](./clamav+connector) | [ClamAV] antivirus + IDMEFv2 connector  | testserver  |
 | [glpi](./glpi) | [GLPI] asset management |   |
 | [glpi+addon](./glpi+addon) | IDMEFv2 add-on for message enrichment  | glpi  |
+| [modsecurity+connector](./modsecurity+connector) | Modsecurity + IDMEFv2 connector  | testserver  |
+| [prometheus+connector](./prometheus+connector) | Prometheus + IDMEFv2 connector  | testserver  |
 | [suricata+connector](./suricata+connector) | [Suricata] NIDS + IDMEFv2 connector | testserver  |
 | [testserver](./testserver) | a simple HTTP server to validate IDMEFv2 messages  |   |
 | [wazuh-agent](./wazuh-agent) | [Wazuh] HIDS agent  |   |
@@ -26,6 +28,8 @@ Current application list:
 
 [ClamAV]: https://www.clamav.net/
 [GLPI]: https://github.com/glpi-project
+[Modsecurity]: https://modsecurity.org/
+[Prometheus]: https://prometheus.io/
 [Suricata]: https://suricata.io/
 [Wazuh]: https://wazuh.com/
 [Zoneminder]: https://zoneminder.com/
