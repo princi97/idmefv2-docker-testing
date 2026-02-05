@@ -1,0 +1,69 @@
+name: modsecurity
+
+services:
+  app:
+    image: kennethreitz/httpbin:latest
+    container_name: demo-app
+    networks:
+      - connector_net
+    expose:
+      - "80"
+
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    container_name: modsec-waf
+    depends_on:
+      - app
+    ports:
+      - "8080:8080"
+    networks:
+      - connector_net
+    environment:
+      - BACKEND=http://app:80
+      - MODSEC_RULE_ENGINE=On
+      - MODSEC_AUDIT_ENGINE=RelevantOnly
+      - MODSEC_AUDIT_LOG_FORMAT=JSON
+      - MODSEC_AUDIT_LOG_TYPE=Serial
+      - MODSEC_AUDIT_LOG=/var/log/modsec_audit.log
+      - MODSEC_AUDIT_LOG_PARTS=ABIJDEFHZ
+      - ERRORLOG=/var/log/modsec_error.log
+      - LOGLEVEL=info
+    volumes:
+      - ./logs/modsec_audit.log:/var/log/modsec_audit.log
+      - ./logs/modsec_error.log:/var/log/modsec_error.log
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  modsecurity.idmefv2:
+    build:
+      context: "containers/modsecurity-idmefv2"
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+      - type: "bind"
+        source: "./containers/modsecurity-idmefv2/files/modsecurity-idmefv2.conf"
+        target: "/etc/modsecurity-idmefv2.conf"
+      - type: "bind"
+        source: "./logs/modsec_audit.log"
+        target: "/var/log/modsec_audit.log"
+    networks:
+      - connector_net
+    command: /entrypoint.sh
+    depends_on:
+      waf:
+        condition: service_healthy
+
+  testserver.idmefv2:
+    extends:
+      file: ../testserver/docker-compose.yml
+      service: testserver.idmefv2
+    networks:
+      - connector_net
+
+networks:
+  connector_net:
+    driver: bridge
