@@ -122,6 +122,8 @@ services:
     depends_on:
       es01:
         condition: service_healthy
+      kibana:
+        condition: service_healthy
     image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
     volumes:
       - type: volume
@@ -144,18 +146,6 @@ services:
       - type: "volume"
         source: sshdlogs
         target: "/var/log"
-  elastalert:
-    depends_on:
-      es01:
-        condition: service_healthy
-    image: jertel/elastalert2
-    volumes:
-      - type: "bind"
-        source: "./storage/elastalert/config.yaml"
-        target: "/opt/elastalert/config.yaml"
-      - type: "bind"
-        source: "./storage/elastalert/rules"
-        target: "/opt/elastalert/rules"
 
 volumes:
   certs:
